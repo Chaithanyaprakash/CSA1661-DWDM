@@ -1,0 +1,16 @@
+library(readxl)
+diabetest1 <- tryCatch
+(
+  read_excel("C:/Users/M.Geetha/Downloads/NARA.xlsx"),
+  error = function(e) message("Error reading file. Check file path.")
+)
+if (!is.null(diabetest1)) 
+{
+  age <- diabetest1$Age
+  mean_age <- mean(age)
+  std_dev <- sd(age)
+  z_scores <- (age - mean_age) / std_dev
+  cat("Mean Age:", mean_age, "\n")
+  cat("Standard Deviation:", std_dev, "\n")
+  cat("Z-Scores:\n", z_scores, sep = "\n")
+}
